@@ -1,0 +1,26 @@
+[Unit]
+Description=Tomcat
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/data/tomcat/tomcat.pid
+ExecStart=/data/tomcat/bin/startup.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+########################
+##set tomcat pid
+#CATALINA_PID="$CATALINA_BASE/tomcat.pid"
+#配置开机启动
+#systemctl enable tomcat
+#启动tomcat
+#systemctl start tomcat
+#停止tomcat
+#systemctl stop tomcat
+#重启tomcat
+#systemctl restart tomcat
+#######################
